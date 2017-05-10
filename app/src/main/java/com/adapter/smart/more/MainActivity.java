@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         tv2 = (TextView) findViewById(R.id.tv2);
 
         tv2.setTextSize(20);
-        new UtilMoreText().setClickableSpan(tv2,msg);
+        new UtilMoreText(tv2,msg);
         tv1.setText(getClickableSpan(0));
 
         tv1.setMovementMethod(LinkMovementMethod.getInstance());

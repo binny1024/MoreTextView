@@ -30,49 +30,34 @@ public class UtilMoreText  {
     private int mStartPos;
     private int mEndPos;
     private Integer mSpanTextColor;
+    private Integer mCharNum;
 
-    /**
-     * @param textView  显示富文本的textView
-     * @param oriMsg    文本原始信息
-     * @param spanTextClickListener
-     */
-    public void setClickableSpan(TextView textView, String oriMsg,int spanTextColor,OnSpanTextClickListener spanTextClickListener){
+    public UtilMoreText(TextView textView, String oriMsg) {
+        mTextView = textView;
+        mOriMsg = oriMsg;
+        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
+        textView.setText(part());
+    }
+
+    public UtilMoreText setCharNum(int charNum){
+        mCharNum = charNum;
+        return this;
+    }
+    public UtilMoreText setSpanTextColor(int spanTextColor){
+        mSpanTextColor = spanTextColor;
+        return this;
+    }
+
+    public UtilMoreText setOnSpanTextClickListener(OnSpanTextClickListener spanTextClickListener){
         mSpanTextClickListener = spanTextClickListener;
-        mSpanTextColor =spanTextColor;
-
-        mTextView = textView;
-        mOriMsg = oriMsg;
-        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
-        textView.setText(part());
-
+        return this;
     }
-
-    /** 重载这个方法 可用于与其他view交互
-     * @param textView
-     * @param oriMsg
-     */
-    public void setClickableSpan(TextView textView, String oriMsg){
-        mTextView = textView;
-        mOriMsg = oriMsg;
-        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
-        textView.setText(part());
-    }
-    public void setClickableSpan(TextView textView, String oriMsg,int spanTextColor){
-        mTextView = textView;
-        mOriMsg = oriMsg;
-        mSpanTextColor =spanTextColor;
-        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
-        textView.setText(part());
-    }
-    public void setClickableSpan(TextView textView, String oriMsg, int spanTextColor, int startPos, int endPos){
-        mTextView = textView;
-        mOriMsg = oriMsg;
+    public UtilMoreText setPos(int startPos, int endPos){
         mStartPos = startPos;
         mEndPos = endPos;
-        mSpanTextColor =spanTextColor;
-        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
-        textView.setText(part());
+        return this;
     }
+
 
     class SpanTextClickable extends ClickableSpan implements View.OnClickListener{
         @Override
@@ -108,23 +93,27 @@ public class UtilMoreText  {
     }
 
     private SpannableString part() {
-        String temp = mOriMsg.substring(0,mOriMsg.length()/2)+"...展开";
-        SpannableString spanableInfo = new SpannableString(temp);
-
-        spanableInfo.setSpan(new  SpanTextClickable(), mStartPos==0?temp.length()-2:mStartPos, mEndPos==0?temp.length():mEndPos,
-                Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
-        return spanableInfo;
+        String temp="";
+        if (mCharNum != null) {
+            temp = mOriMsg.substring(0,mCharNum)+"...展开";
+        }else {
+            temp = mOriMsg.substring(0,mOriMsg.length()/2)+"...展开";
+        }
+        return getSpannableString(temp);
     }
 
     private SpannableString open() {
         String temp = mOriMsg+"收起";
+        return getSpannableString(temp);
+    }
+
+    private SpannableString getSpannableString(CharSequence temp) {
         SpannableString spanableInfo = new SpannableString(temp);
         spanableInfo.setSpan(new  SpanTextClickable(), mStartPos==0?temp.length()-2:mStartPos, mEndPos==0?temp.length():mEndPos,
                 Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
         return spanableInfo;
     }
+
     public interface OnSpanTextClickListener {
         void setSpanText(TextView view,SpannableString s);
     }
