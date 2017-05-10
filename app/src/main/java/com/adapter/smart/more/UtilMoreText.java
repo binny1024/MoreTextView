@@ -39,7 +39,7 @@ public class UtilMoreText  {
         textView.setText(part());
     }
 
-    public UtilMoreText setCharNum(int charNum){
+    public UtilMoreText setPartCharNum(int charNum){
         mCharNum = charNum;
         return this;
     }
