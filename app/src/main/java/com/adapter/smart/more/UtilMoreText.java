@@ -51,6 +51,12 @@ public class UtilMoreText  {
      * @param textView
      * @param oriMsg
      */
+    public void setClickableSpan(TextView textView, String oriMsg){
+        mTextView = textView;
+        mOriMsg = oriMsg;
+        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
+        textView.setText(part());
+    }
     public void setClickableSpan(TextView textView, String oriMsg,int spanTextColor){
         mTextView = textView;
         mOriMsg = oriMsg;
