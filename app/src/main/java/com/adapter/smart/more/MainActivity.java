@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private TextView tv1;
     private TextView tv2;
     private int open;
