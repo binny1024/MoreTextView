@@ -5,6 +5,9 @@
     new UtilMoreText(tv2,msg);//只需要传递两个参数，一个是TextView，一个是原始字符串
 #### 不想下载demod的话，可以直接引用
     引用方式 compile 'com.smart.holder_library:holder_library:1.0.4'
-### 源码地址
+#### 使用上面引用依赖的方式，还会有其他额外的功能，该功能在使用了ListView和GridView的项目，能够极大程度解耦，方便修改和维护有兴趣，请转至：
+   https://github.com/xubinbin1024/CommonAdapter-master
+
+### UtilMoreText.java 源码地址
 https://github.com/xubinbin1024/CommonAdapter-master/blob/master/holder_library/src/main/java/com/smart/holder_library/utils/UtilMoreText.java
 ![](https://github.com/xubinbin1024/MoreTextView/blob/master/gif/3.gif)
