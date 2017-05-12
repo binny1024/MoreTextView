@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.smart.holder_library.utils.UtilMoreText;
+
 public class MainActivity extends AppCompatActivity {
 
 
