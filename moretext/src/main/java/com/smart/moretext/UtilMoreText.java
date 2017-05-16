@@ -1,6 +1,7 @@
 package com.smart.moretext;
 
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -30,11 +31,22 @@ public class UtilMoreText  {
     private int mStartPos;
     private int mEndPos;
     private Integer mSpanTextColor;
-
-    public UtilMoreText(final TextView textView, String oriMsg,float expectedWidth) {
+    private int lineNum;
+/*    public UtilMoreText(final TextView textView, String oriMsg,float expectedWidth) {
         mTextView = textView;
         mOriMsg = oriMsg;
         mExpectedWidth = expectedWidth;
+        textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
+        textView.setText(part());
+    }*/
+    public UtilMoreText setLines(int lineNum){
+        this.lineNum = lineNum;
+        mExpectedWidth = Resources.getSystem().getDisplayMetrics().density;
+        return this;
+    }
+    public UtilMoreText(TextView textView, String oriMsg) {
+        mTextView = textView;
+        mOriMsg = oriMsg;
         textView.setMovementMethod(LinkMovementMethod.getInstance());//必须设置否则无效
         textView.setText(part());
     }
@@ -104,9 +116,7 @@ public class UtilMoreText  {
         return spanableInfo;
     }
 
-    public interface OnSpanTextClickListener {
-        void setSpanText(TextView view,SpannableString s);
-    }
+
 
     private String getCompressedString(String text){
         if (text.length() == 0) {
@@ -115,19 +125,22 @@ public class UtilMoreText  {
         String measuredString = text + "...展开";
         TextPaint paint = mTextView.getPaint();
 
-        if (paint.measureText(measuredString + "...展开") < mExpectedWidth *2) {
+        if (paint.measureText(measuredString + "...展开") < mExpectedWidth *lineNum) {
             return measuredString;
         }
         boolean finished = false;
         int mPos = 0;
         while (!finished ){
-
             mPos++;
             measuredString = text.substring(0,mPos);
-            if (paint.measureText(measuredString + "...展开") > mExpectedWidth *2 ) {
+            if (paint.measureText(measuredString + "...展开") > mExpectedWidth *lineNum ) {
                 finished = true;
             }
         }
         return measuredString;
+    }
+
+    public interface OnSpanTextClickListener {
+        void setSpanText(TextView view,SpannableString s);
     }
 }
