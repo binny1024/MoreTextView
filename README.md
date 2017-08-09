@@ -14,7 +14,7 @@
    https://github.com/xubinbin1024/CommonAdapter-master
 
 ### UtilMoreText.java 源码地址
-https://github.com/xubinbin1024/CommonAdapter-master/blob/master/holder_library/src/main/java/com/smart/holder_library/utils/UtilMoreText.java
+https://github.com/XBean1024/MoreTextView/blob/master/moretext/src/main/java/com/smart/moretext/UtilMoreText.java
 ![](https://github.com/xubinbin1024/MoreTextView/blob/master/gif/3.gif)
 ##### QQ：交流群 ：192268854
 ![](https://github.com/Xbean1024/XHttp/blob/master/gif/QQ.JPG)
