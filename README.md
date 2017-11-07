@@ -51,7 +51,7 @@
     new UtilMoreText(tv2,msg,down,up).createImg();
 #### UtilMoreText.java 源码地址
 https://github.com/XBean1024/MoreTextView/blob/master/moretext/src/main/java/com/smart/moretext/UtilMoreText.java
-#### 效果图，图片就不展示，和文字的一样，安卓体验吧
+#### 效果图，(结尾随意找的图片，项目中更换一下)
 ![](https://github.com/xubinbin1024/MoreTextView/blob/master/gif/3.gif)
 
 #### 推荐，其他网友的一个组合view实现的，效果也不错
